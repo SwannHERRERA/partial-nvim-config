@@ -16,7 +16,7 @@ local servers = {
   "pyright",
   "intelephense",
   "jsonls",
-  "cucumber_language_server"
+  "cucumber_language_server",
 }
 
 for _, lsp in ipairs(servers) do

@@ -84,5 +84,19 @@ return {
       })
     end
   },
+  ["scalameta/nvim-metals"] = {
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    config = function ()
+      require("metals").bare_config()
+    end,
+  },
+  ["akinsho/flutter-tools.nvim"] = {
+    config = function ()
+      require("flutter-tools").setup{}
+    end
+  },
 }
 

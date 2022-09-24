@@ -2,6 +2,8 @@
 local pluginConfs = require "custom.plugins.configs"
 local M = {}
 
+vim.cmd("set rnu")
+
 M.options = {
   nvChad = {
     update_url = "https://github.com/NvChad/NvChad",
