@@ -13,7 +13,7 @@ M.options = {
 
 M.ui = {
   theme_toggle = { "onedark", "one_light" },
-  theme = "tokyodark",
+  theme = "gruvbox_material",
   transparency = false,
 }
 
