@@ -103,4 +103,10 @@ return {
       require('leap').add_default_mappings()
     end
   },
+  ["kylechui/nvim-surround"] = {
+    tag = "*",
+    config = function ()
+      require("nvim-surround").setup({})
+    end
+  },
 }
