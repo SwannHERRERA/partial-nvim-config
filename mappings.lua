@@ -133,19 +133,9 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    ["gD"] = {
-      function()
-        vim.lsp.buf.declaration()
-      end,
-      "lsp declaration",
-    },
+    ["gD"] = { "<cmd> Telescope lsp_type_definitions <CR>", "lsp type definition" },
 
-    ["gd"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "lsp definition",
-    },
+    ["gd"] = { "<cmd> Telescope lsp_definitions <CR>", "lsp definition" },
 
     ["K"] = {
       function()
@@ -154,25 +144,13 @@ M.lspconfig = {
       "lsp hover",
     },
 
-    ["gi"] = {
-      function()
-        vim.lsp.buf.implementation()
-      end,
-      "lsp implementation",
-    },
+    ["gi"] = { "<cmd> Telescope lsp_implementations <CR>", "lsp implementations" },
 
     ["<leader>ls"] = {
       function()
         vim.lsp.buf.signature_help()
       end,
       "lsp signature_help",
-    },
-
-    ["<leader>D"] = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "lsp definition type",
     },
 
     ["<leader>ra"] = {
@@ -189,12 +167,7 @@ M.lspconfig = {
       "lsp code_action",
     },
 
-    ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
-      "lsp references",
-    },
+    ["gr"] = { "<cmd> Telescope lsp_references <CR>", "lsp reference" },
 
     ["<leader>f"] = {
       function()
@@ -226,7 +199,7 @@ M.lspconfig = {
 
     ["<leader>fm"] = {
       function()
-        vim.lsp.buf.formatting {}
+        vim.lsp.buf.format { async = true }
       end,
       "lsp formatting",
     },
@@ -289,8 +262,11 @@ M.telescope = {
 
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
+
     ["<leader>wo"] = { "<cmd> Telescope workspaces <CR>", "nvchad themes" },
     ["<leader>ts"] = { "<cmd> Telescope treesitter <CR>", "nvchad themes" },
+    ["<leader>od"] = { "<cmd> Telescope lsp_document_symbols <CR>", "nvchad themes" },
+    ["<leader>st"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "nvchad themes" },
   },
 }
 
@@ -306,14 +282,14 @@ M.nvterm = {
       "toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<˙>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "toggle horizontal term",
     },
 
-    ["<A-v>"] = {
+    ["<√>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -323,21 +299,21 @@ M.nvterm = {
 
   n = {
     -- toggle in normal mode
-    ["<A-j>"] = {
+    ["<∆>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
       "toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<˙>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "toggle horizontal term",
     },
 
-    ["<A-v>"] = {
+    ["<√>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -362,26 +338,6 @@ M.nvterm = {
   },
 }
 
-M.whichkey = {
-  plugin = true,
-
-  n = {
-    ["<leader>wK"] = {
-      function()
-        vim.cmd "WhichKey"
-      end,
-      "which-key all keymaps",
-    },
-    ["<leader>wk"] = {
-      function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
-      end,
-      "which-key query lookup",
-    },
-  },
-}
-
 M.blankline = {
   plugin = true,
 
@@ -395,10 +351,8 @@ M.blankline = {
 
         if ok then
           vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-          vim.cmd [[normal! _]]
         end
       end,
-
       "Jump to current_context",
     },
   },
