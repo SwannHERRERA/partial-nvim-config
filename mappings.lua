@@ -263,10 +263,10 @@ M.telescope = {
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
 
-    ["<leader>wo"] = { "<cmd> Telescope workspaces <CR>", "nvchad themes" },
-    ["<leader>ts"] = { "<cmd> Telescope treesitter <CR>", "nvchad themes" },
-    ["<leader>od"] = { "<cmd> Telescope lsp_document_symbols <CR>", "nvchad themes" },
-    ["<leader>st"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "nvchad themes" },
+    ["<leader>wo"] = { "<cmd> Telescope workspaces <CR>", "workspaces" },
+    ["<leader>ts"] = { "<cmd> Telescope treesitter <CR>", "treesitter" },
+    ["<leader>od"] = { "<cmd> Telescope lsp_document_symbols <CR>", "document symbols" },
+    ["<leader>st"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "workspaces symbols" },
   },
 }
 
