@@ -9,6 +9,8 @@ M.general = {
     ["<leader>ts"] = { "<cmd> Telescope treesitter <CR>", "treesitter" },
     ["<leader>od"] = { "<cmd> Telescope lsp_document_symbols <CR>", "document symbols" },
     ["<leader>st"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "workspaces symbols" },
+    ["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "go to reference" },
+    ["<leader>gi"] = { "<cmd> Telescope lsp_implementation <CR>", "go to implemetation" },
     -- debuggablility
     ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
     ["<leader>dus"] = {
