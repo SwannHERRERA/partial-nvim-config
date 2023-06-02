@@ -124,7 +124,6 @@ local plugins = {
       require("telescope").load_extension("undo")
     end,
   },
-  { "zbirenbaum/copilot.lua", lazy = false },
   {
       "kylechui/nvim-surround",
       version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -154,6 +153,9 @@ local plugins = {
       }
     })
     end
+  },
+  {
+    'stevearc/oil.nvim',
   }
 }
 

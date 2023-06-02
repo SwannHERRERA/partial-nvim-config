@@ -3,7 +3,12 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
-require("lspconfig").gopls.setup {
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.prismals.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
