@@ -22,3 +22,9 @@ lspconfig.phpactor.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
+lspconfig.terraformls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
