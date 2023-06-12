@@ -124,7 +124,6 @@ local plugins = {
       require("telescope").load_extension("undo")
     end,
   },
-  { "zbirenbaum/copilot.lua", lazy = false },
   {
       "kylechui/nvim-surround",
       version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -156,7 +155,21 @@ local plugins = {
       })
       require("telescope").load_extension('harpoon')
     end
-  }
+  },
+  {
+    'stevearc/oil.nvim',
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    config = function(_, opts)
+      require("gopher").setup(opts)
+      require("core.utils").load_mappings("gopher")
+    end,
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
+    end,
+  },
 }
 
 return plugins

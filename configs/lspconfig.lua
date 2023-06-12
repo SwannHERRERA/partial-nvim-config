@@ -8,12 +8,27 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
 }
 
+lspconfig.prismals.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
 
 lspconfig.phpactor.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.terraformls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.tailwindcss.setup{
   on_attach = on_attach,
   capabilities = capabilities,
 }
