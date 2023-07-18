@@ -134,9 +134,29 @@ local plugins = {
           })
       end
   },
-  { "tpope/vim-fugitive", lazy = false },
+  {
+    'NeogitOrg/neogit',
+    dependencies = 'nvim-lua/plenary.nvim',
+    cmd = "Neogit",
+    config = function()
+      require("neogit").setup({
+       kind = "split", -- opens neogit in a split 
+       signs = {
+        -- { CLOSED, OPENED }
+        section = { "", "" },
+        item = { "", "" },
+        hunk = { "", "" },
+       },
+       integrations = { diffview = true }, -- adds integration with diffview.nvim
+      })
+     end
+  },
   { 'lewis6991/gitsigns.nvim' },
-  { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
+  {
+    'sindrets/diffview.nvim',
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    requires = 'nvim-lua/plenary.nvim'
+  },
   {
     'ThePrimeagen/harpoon',
     lazy = true,
@@ -160,14 +180,25 @@ local plugins = {
     'stevearc/oil.nvim',
   },
   {
+    "jackMort/ChatGPT.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("chatgpt").setup({
+        api_key_cmd = "pass show api/tokens/openia/chatgpt.nvim_key"
+      })
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+  },
+  {
     "olexsmir/gopher.nvim",
     ft = "go",
     config = function(_, opts)
       require("gopher").setup(opts)
       require("core.utils").load_mappings("gopher")
-    end,
-    build = function()
-      vim.cmd [[silent! GoInstallDeps]]
     end,
   },
   {
