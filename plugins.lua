@@ -170,6 +170,12 @@ local plugins = {
       vim.cmd [[silent! GoInstallDeps]]
     end,
   },
+  {
+    "IndianBoy42/tree-sitter-just",
+    config = function()
+      require('tree-sitter-just').setup()
+    end
+  },
 }
 
 return plugins
