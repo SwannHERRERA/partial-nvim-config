@@ -136,7 +136,11 @@ local plugins = {
   },
   {
     'NeogitOrg/neogit',
-    dependencies = 'nvim-lua/plenary.nvim',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "sindrets/diffview.nvim",
+    },
     cmd = "Neogit",
     config = function()
       require("neogit").setup({
@@ -147,7 +151,7 @@ local plugins = {
         item = { "", "" },
         hunk = { "", "" },
        },
-       integrations = { diffview = true }, -- adds integration with diffview.nvim
+       integrations = { diffview = true, telescope = true },
       })
      end
   },
@@ -178,6 +182,16 @@ local plugins = {
   },
   {
     'stevearc/oil.nvim',
+  },
+  {
+    'emmanueltouzery/agitator.nvim',
+    keys = {
+      {
+        "<leader>gkb", function()
+          require('agitator').git_blame()
+        end
+      }
+    },
   },
   {
     "jackMort/ChatGPT.nvim",

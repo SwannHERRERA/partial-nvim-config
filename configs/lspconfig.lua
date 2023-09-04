@@ -18,6 +18,11 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
 }
 
+lspconfig.astro.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 lspconfig.phpactor.setup {
   on_attach = on_attach,
   capabilities = capabilities,
