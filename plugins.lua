@@ -193,20 +193,20 @@ local plugins = {
       }
     },
   },
-  {
-    "jackMort/ChatGPT.nvim",
-      event = "VeryLazy",
-      config = function()
-        require("chatgpt").setup({
-        api_key_cmd = "pass show api/tokens/openia/chatgpt.nvim_key"
-      })
-      end,
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
-  },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --     event = "VeryLazy",
+  --     config = function()
+  --       require("chatgpt").setup({
+  --       api_key_cmd = "pass show api/tokens/openia/chatgpt.nvim_key"
+  --     })
+  --     end,
+  --     dependencies = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- },
   {
     "olexsmir/gopher.nvim",
     ft = "go",
@@ -221,6 +221,26 @@ local plugins = {
       require('tree-sitter-just').setup()
     end
   },
+  {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function ()
+      require"octo".setup()
+    end,
+    lazy = false,
+  },
+  {
+    'ThePrimeagen/git-worktree.nvim',
+    lazy = false,
+    config = function ()
+      require("git-worktree").setup()
+      require("telescope").load_extension('git_worktree')
+    end
+  }
 }
 
 return plugins

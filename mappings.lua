@@ -23,7 +23,9 @@ M.general = {
     },
 
     -- Undo manager
-    ["<leader>u"] = { "<cmd>Telescope undo<cr>", "Telescope undo" }
+    ["<leader>u"] = { "<cmd>Telescope undo<cr>", "Telescope undo" },
+    -- Neogit
+    ["<leader>p"] = { "<cmd>Neogit<cr>", "Open Neogit" }
   },
 }
 
