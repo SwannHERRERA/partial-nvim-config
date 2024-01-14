@@ -27,6 +27,7 @@ M.general = {
       "Open debugging sidebar"
     },
 
+    -- Neogit
     ["<leader>p"] = { "<cmd> Neogit <CR>", "Open Neogit" },
 
     -- Undo manager

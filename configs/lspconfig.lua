@@ -18,17 +18,37 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
 }
 
+lspconfig.astro.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 lspconfig.phpactor.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
 
-lspconfig.terraformls.setup{
+lspconfig.terraformls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
 
-lspconfig.tailwindcss.setup{
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.sqlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.cucumber_language_server.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }

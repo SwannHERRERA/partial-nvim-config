@@ -136,7 +136,11 @@ local plugins = {
   },
   {
     'NeogitOrg/neogit',
-    dependencies = 'nvim-lua/plenary.nvim',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "sindrets/diffview.nvim",
+    },
     cmd = "Neogit",
     config = function()
       require("neogit").setup({
@@ -147,7 +151,7 @@ local plugins = {
         item = { "", "" },
         hunk = { "", "" },
        },
-       integrations = { diffview = true }, -- adds integration with diffview.nvim
+       integrations = { diffview = true, telescope = true },
       })
      end
   },
@@ -169,11 +173,13 @@ local plugins = {
       {"L", function() require('harpoon.ui').nav_next() end},
       {"H", function() require('harpoon.ui').nav_prev() end}
     },
-    config = function ()require("harpoon").setup({
-      menu = {
-        width = vim.api.nvim_win_get_width(0)-4,
-      }
-    })
+    config = function ()
+      require("harpoon").setup({
+        menu = {
+          width = vim.api.nvim_win_get_width(0)-4,
+        }
+      })
+      require("telescope").load_extension('harpoon')
     end
   },
   {
@@ -188,8 +194,32 @@ local plugins = {
         "MunifTanjim/nui.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim"
-      }
+    }
   },
+  {
+    'emmanueltouzery/agitator.nvim',
+    keys = {
+      {
+        "<leader>gkb", function()
+          require('agitator').git_blame()
+        end
+      }
+    },
+  },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --     event = "VeryLazy",
+  --     config = function()
+  --       require("chatgpt").setup({
+  --       api_key_cmd = "pass show api/tokens/openia/chatgpt.nvim_key"
+  --     })
+  --     end,
+  --     dependencies = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- },
   {
     "olexsmir/gopher.nvim",
     ft = "go",
@@ -257,6 +287,26 @@ local plugins = {
       { "<leader>Tn", "<cmd>TestNearest<cr>", silent = true, desc = "Run nearest test" },
       { "<leader>Tl", "<cmd>TestLast<cr>",    silent = true, desc = "Run last test" },
     },
+  },
+  {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function ()
+      require"octo".setup()
+    end,
+    lazy = false,
+  },
+  {
+    'ThePrimeagen/git-worktree.nvim',
+    lazy = false,
+    config = function ()
+      require("git-worktree").setup()
+      require("telescope").load_extension('git_worktree')
+    end
   }
 }
 
