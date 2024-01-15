@@ -37,13 +37,13 @@ M.general = {
     ['{'] = { '<cmd><c-u>execute "keepjumps norm! " . v:count1 . "{"<cr>' },
     ['}'] = { '<cmd><c-u>execute "keepjumps norm! " . v:count1 . "}"<cr>' },
     ['J'] = { "}" },
-    ["<C-k>"] = {
-      function()
-        vim.lsp.buf.hover()
-      end,
-      "LSP hover",
-    },
-    ['K'] = { "{" },
+    -- ["<C-k>"] = {
+    --   function()
+    --     vim.lsp.buf.hover()
+    --   end,
+    --   "LSP hover",
+    -- },
+    -- ['K'] = { "{" },
     ['gJ'] = { "<cmd>join<cr>" },
 
     -- Gitsign
