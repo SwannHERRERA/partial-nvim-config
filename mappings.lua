@@ -16,16 +16,6 @@ M.general = {
     ["<leader>gi"] = { "<cmd> Telescope lsp_implementation <CR>", "go to implemetation" },
     ["<leader>gf"] = { "<cmd> Telescope git_files <CR>", "Git files" },
     ["<leader>ss"] = { "<cmd> Telescope builtin <CR>", "Telescope telescope" },
-    -- debuggablility
-    ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
-    ["<leader>dus"] = {
-      function ()
-        local widgets = require('dap.ui.widgets');
-        local sidebar = widgets.sidebar(widgets.scopes);
-        sidebar.open();
-      end,
-      "Open debugging sidebar"
-    },
 
     -- Neogit
     ["<leader>p"] = { "<cmd> Neogit <CR>", "Open Neogit" },
@@ -55,6 +45,32 @@ M.general = {
   },
 }
 
+-- debuggablility
+M.dap = {
+  plugin = true,
+  n = {
+    ["<leader>db"] = {"<cmd> DapToggleBreakpoint <CR>"},
+    ["<leader>dus"] = {
+      function ()
+        local widgets = require('dap.ui.widgets');
+        local sidebar = widgets.sidebar(widgets.scopes);
+        sidebar.open();
+      end,
+      "Open debugging sidebar"
+    }
+  }
+}
+
+M.dap_python = {
+  plugin = true,
+  n = {
+    ["<leader>dpr"] = {
+      function()
+        require('dap-python').test_method()
+      end
+    }
+  }
+}
 -- more keybinds!
 
 return M
