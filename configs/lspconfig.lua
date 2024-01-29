@@ -56,4 +56,5 @@ lspconfig.cucumber_language_server.setup {
 lspconfig.elixirls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  cmd = { "/Users/swannherrera/.config/elixir/language_server.sh" };
 }
