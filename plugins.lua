@@ -229,30 +229,6 @@ local plugins = {
       require("telescope").load_extension('harpoon')
     end
   },
-  {
-    "jackMort/ChatGPT.nvim",
-      event = "VeryLazy",
-      config = function()
-        require("chatgpt").setup({
-        api_key_cmd = "pass show api/tokens/openia/chatgpt.nvim_key"
-      })
-      end,
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
-    }
-  },
-  {
-    'emmanueltouzery/agitator.nvim',
-    keys = {
-      {
-        "<leader>gkb", function()
-          require('agitator').git_blame()
-        end
-      }
-    },
-  },
   -- {
   --   "jackMort/ChatGPT.nvim",
   --     event = "VeryLazy",
@@ -265,8 +241,18 @@ local plugins = {
   --       "MunifTanjim/nui.nvim",
   --       "nvim-lua/plenary.nvim",
   --       "nvim-telescope/telescope.nvim"
-  --     }
+  --   }
   -- },
+  {
+    'emmanueltouzery/agitator.nvim',
+    keys = {
+      {
+        "<leader>gkb", function()
+          require('agitator').git_blame()
+        end
+      }
+    },
+  },
   {
     "olexsmir/gopher.nvim",
     ft = "go",
@@ -277,7 +263,9 @@ local plugins = {
   },
   {
     'stevearc/oil.nvim',
-    opts = {},
+    opts = {
+      default_file_explorer = true,
+    },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
@@ -354,6 +342,33 @@ local plugins = {
       require("git-worktree").setup()
       require("telescope").load_extension('git_worktree')
     end
+  },
+  {
+    'glacambre/firenvim',
+
+    -- Lazy load firenvim
+    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+    lazy = not vim.g.started_by_firenvim,
+    build = function()
+        vim.fn["firenvim#install"](0)
+    end
+  },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
   }
 }
 
