@@ -1,7 +1,7 @@
 local M = {}
 
 M.ui = {
-  theme = 'onenord',
+  theme = 'palenight',
   tabufline = {
     show_numbers = false,
     enabled = false,
