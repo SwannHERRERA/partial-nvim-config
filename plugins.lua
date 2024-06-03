@@ -369,7 +369,159 @@ local plugins = {
       -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
     end,
-  }
+  },
+  {
+  "dnlhc/glance.nvim",
+    config = function()
+      require('glance').setup({
+        -- your configuration
+      })
+    end,
+  },
+  {
+    'ruifm/gitlinker.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      require"gitlinker".setup()
+    end
+  },
+  {'akinsho/git-conflict.nvim', version = "*", config = true},
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+      require("telescope").load_extension("refactoring")
+    end,
+  },
+  {
+    'Wansmer/treesj',
+    keys = { '<space>m', '<space>j', '<space>s' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require('treesj').setup({--[[ your config ]]})
+    end,
+  },
+  {
+      "smoka7/multicursors.nvim",
+      event = "VeryLazy",
+      dependencies = {
+          'smoka7/hydra.nvim',
+      },
+      opts = {},
+      cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+      keys = {
+              {
+                  mode = { 'v', 'n' },
+                  '<Leader>m',
+                  '<cmd>MCstart<cr>',
+                  desc = 'Create a selection for selected text or word under the cursor',
+              },
+          },
+  },
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async'
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+      },
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true, -- use a classic bottom cmdline for search
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+      })
+    end
+  },
+  { "chrisgrieser/nvim-spider", lazy = true },
+  {
+    "chrisgrieser/nvim-scissors",
+    dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
+    opts = {
+      snippetDir = "path/to/your/snippetFolder",
+    }
+  },
+  {
+    'razak17/tailwind-fold.nvim',
+    opts= {},
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact', 'php', 'blade' },
+  },
+  {
+      "MaximilianLloyd/tw-values.nvim",
+      keys = {
+          { "<leader>sv", "<cmd>TWValues<cr>", desc = "Show tailwind CSS values" },
+      },
+      opts = {
+          border = "rounded", -- Valid window border style,
+          show_unknown_classes = true, -- Shows the unknown classes popup
+          focus_preview = true, -- Sets the preview as the current window
+          copy_register = "", -- The register to copy values to,
+          keymaps = {
+              copy = "<C-y>"  -- Normal mode keymap to copy the CSS values between {}
+          }
+      }
+  },
+  {
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
+    end,
+    keys = {
+      "ga", -- Default invocation prefix
+      { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+    },
+    cmd = {
+      -- NOTE: The Subs command name can be customized via the option "substitude_command_name"
+      "Subs",
+      "TextCaseOpenTelescope",
+      "TextCaseOpenTelescopeQuickChange",
+      "TextCaseOpenTelescopeLSPChange",
+      "TextCaseStartReplacingCommand",
+    },
+    -- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
+    -- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
+    -- available after the first executing of it or after a keymap of text-case.nvim has been used.
+    lazy = false,
+  },
+  {
+    {
+      'laytan/tailwind-sorter.nvim',
+      dependencies = {'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'},
+      build = 'cd formatter && npm ci && npm run build',
+      config = true,
+    },
+  },
 }
 
 return plugins
