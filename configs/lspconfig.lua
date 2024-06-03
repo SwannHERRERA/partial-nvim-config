@@ -53,6 +53,11 @@ lspconfig.cucumber_language_server.setup {
   capabilities = capabilities,
 }
 
+lspconfig.biome.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 lspconfig.elixirls.setup {
   on_attach = on_attach,
   capabilities = capabilities,

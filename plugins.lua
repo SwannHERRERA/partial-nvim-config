@@ -369,6 +369,37 @@ local plugins = {
       -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
     end,
+  },
+  {
+      'windwp/nvim-autopairs',
+      event = "InsertEnter",
+      config = true
+      -- use opts = {} for passing setup options
+      -- this is equalent to setup({}) function
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {}
+  },
+  {
+      'nvimdev/lspsaga.nvim',
+      config = function()
+          require('lspsaga').setup({})
+      end,
+      dependencies = {
+          'nvim-treesitter/nvim-treesitter', -- optional
+          'nvim-tree/nvim-web-devicons'     -- optional
+      }
+  },
+  {
+    'glepnir/galaxyline.nvim'
+  },
+  {
+    'nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
   }
 }
 
