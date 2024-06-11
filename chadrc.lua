@@ -1,7 +1,7 @@
 local M = {}
 
 M.ui = {
-  theme = 'palenight',
+  theme = 'one_light',
   tabufline = {
     show_numbers = false,
     enabled = false,
@@ -10,7 +10,7 @@ M.ui = {
   },
   statusline = {
     enabled = false,
-  }
+  },
 }
 
 M.plugins = 'custom.plugins'

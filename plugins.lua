@@ -396,7 +396,7 @@ local plugins = {
     'glepnir/galaxyline.nvim'
   },
   {
-    'nvim-ts-autotag',
+    'windwp/nvim-ts-autotag',
     config = function()
       require('nvim-ts-autotag').setup()
     end
@@ -446,10 +446,10 @@ local plugins = {
       cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
       keys = {
               {
-                  mode = { 'v', 'n' },
-                  '<Leader>m',
-                  '<cmd>MCstart<cr>',
-                  desc = 'Create a selection for selected text or word under the cursor',
+                mode = { 'v', 'n' },
+                '<Leader>m',
+                '<cmd>MCstart<cr>',
+                desc = 'Create a selection for selected text or word under the cursor',
               },
           },
   },
@@ -497,7 +497,7 @@ local plugins = {
     "chrisgrieser/nvim-scissors",
     dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
     opts = {
-      snippetDir = "path/to/your/snippetFolder",
+      snippetDir = "~/.config/nvim/snippets/",
     }
   },
   {
