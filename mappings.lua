@@ -40,8 +40,43 @@ M.general = {
     ['<leader>hs'] = { function() require('gitsigns').stage_hunk() end },
     ['<leader>hr'] = { function() require('gitsigns').reset_hunk() end },
     ['<leader>hS'] = { function() require('gitsigns').stage_buffer() end },
-    ['<leader>hp'] = { function() require('gitsigns').preview_hunk() end }
+    ['<leader>hp'] = { function() require('gitsigns').preview_hunk() end },
 
+    -- Harpoon
+    --
+    --
+
+    ['<leader>a'] = { function() require('harpoon'):list():add() end },
+    ['L'] = { function() require('harpoon').list():next() end },
+    ['H'] = { function() require('harpoon').list():prev() end },
+    ['<C-t>'] = { function() require('harpoon'):list():select(1) end },
+    ['<C-b>'] = { function() require('harpoon'):list():select(2) end },
+    ["<leader>df"] = {
+      function()
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end
+    },
+    ['<leader>fe'] = {
+      function()
+        local conf = require("telescope.config").values
+        local harpoon = require('harpoon')
+        local harpoon_files = harpoon:list()
+        local file_paths = {}
+        for _, item in ipairs(harpoon_files.items) do
+            table.insert(file_paths, item.value)
+        end
+
+        require("telescope.pickers").new({}, {
+            prompt_title = "Harpoon",
+            finder = require("telescope.finders").new_table({
+                results = file_paths,
+            }),
+            previewer = conf.file_previewer({}),
+            sorter = conf.generic_sorter({}),
+        }):find()
+      end
+    }
   },
 }
 

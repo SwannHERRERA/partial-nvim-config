@@ -37,7 +37,7 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function(_, opts)
+    config = function(_)
       require("core.utils").load_mappings("dap")
     end
   },
@@ -48,7 +48,7 @@ local plugins = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
     },
-    config = function(_, opts)
+    config = function(_)
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
       require("core.utils").load_mappings("dap_python")
@@ -209,23 +209,15 @@ local plugins = {
     requires = 'nvim-lua/plenary.nvim'
   },
   {
-    'ThePrimeagen/harpoon',
-    lazy = true,
-    dependencies = { 'nvim-lua/plenary.nvim'},
-    keys = {
-      {"<leader><leader>", function()	end },
-      {"<leader>a", function() require('harpoon.mark').add_file() end},
-      --	{"<C-e>", function() require('harpoon.ui').toggle_quick_menu() end},
-      {"<leader>fe", function() require('harpoon.ui').toggle_quick_menu() end},
-      {"L", function() require('harpoon.ui').nav_next() end},
-      {"H", function() require('harpoon.ui').nav_prev() end}
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
     },
-    config = function ()
-      require("harpoon").setup({
-        menu = {
-          width = vim.api.nvim_win_get_width(0)-4,
-        }
-      })
+    config = function()
+      local harpoon = require("harpoon")
+      harpoon:setup()
       require("telescope").load_extension('harpoon')
     end
   },
@@ -469,7 +461,8 @@ local plugins = {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      -- REMOVED BECAUSE OF LAG
+      -- "rcarriga/nvim-notify",
       },
     config = function()
       require("noice").setup({
@@ -498,7 +491,12 @@ local plugins = {
     dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
     opts = {
       snippetDir = "~/.config/nvim/snippets/",
-    }
+    },
+    config = function()
+      require("luasnip.loaders.from_vscode").load({
+              paths = { "~/.config/nvim/custom_snippets" }
+      })
+    end
   },
   {
     'razak17/tailwind-fold.nvim',
@@ -546,13 +544,32 @@ local plugins = {
     lazy = false,
   },
   {
-    {
-      'laytan/tailwind-sorter.nvim',
-      dependencies = {'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'},
-      build = 'cd formatter && npm ci && npm run build',
-      config = true,
-    },
+    'laytan/tailwind-sorter.nvim',
+    dependencies = {'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'},
+    build = 'cd formatter && npm ci && npm run build',
+    config = true,
   },
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    config = function ()
+      require("telescope").load_extension("ui-select")
+    end
+  },
+  {
+    "aznhe21/actions-preview.nvim",
+    lazy = false,
+    config = function()
+      require("actions-preview").setup {
+        diff = {
+          algorithm = "patience",
+          ignore_whitespace = true,
+        },
+        telescope = require("telescope.themes").get_dropdown { winblend = 10 },
+      }
+      vim.keymap.set({ "v", "n" }, "gf", require("actions-preview").code_actions)
+    end,
+  }
 }
 
 return plugins
