@@ -16,6 +16,7 @@ M.general = {
     ["<leader>gi"] = { "<cmd> Telescope lsp_implementation <CR>", "go to implemetation" },
     ["<leader>gf"] = { "<cmd> Telescope git_files <CR>", "Git files" },
     ["<leader>ss"] = { "<cmd> Telescope builtin <CR>", "Telescope telescope" },
+    ["<leader>fr"] = { function() require("telescope").extensions.live_grep_args.live_grep_args() end },
 
     -- Neogit
     ["<leader>p"] = { "<cmd> Neogit <CR>", "Open Neogit" },
@@ -47,8 +48,8 @@ M.general = {
     --
 
     ['<leader>a'] = { function() require('harpoon'):list():add() end },
-    ['L'] = { function() require('harpoon').list():next() end },
-    ['H'] = { function() require('harpoon').list():prev() end },
+    ['L'] = { function() require('harpoon'):list():next() end },
+    ['H'] = { function() require('harpoon'):list():prev() end },
     ['<C-t>'] = { function() require('harpoon'):list():select(1) end },
     ['<C-b>'] = { function() require('harpoon'):list():select(2) end },
     ["<leader>df"] = {

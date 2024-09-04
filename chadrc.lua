@@ -1,7 +1,7 @@
 local M = {}
 
 M.ui = {
-  theme = 'everforest_light',
+  theme = 'catppuccin',
   tabufline = {
     show_numbers = false,
     enabled = false,

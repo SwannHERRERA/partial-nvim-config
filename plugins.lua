@@ -408,7 +408,6 @@ local plugins = {
       require"gitlinker".setup()
     end
   },
-  {'akinsho/git-conflict.nvim', version = "*", config = true},
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
@@ -574,9 +573,21 @@ local plugins = {
     "supermaven-inc/supermaven-nvim",
     lazy = false,
     config = function()
-      require("supermaven-nvim").setup({})
+      require("supermaven-nvim").setup({
+        disable_inline_completion = false
+      })
     end,
-  }
+  },
+  {
+    "nvim-telescope/telescope-live-grep-args.nvim" ,
+    lazy = false,
+    -- This will not install any breaking changes.
+    -- For major updates, this must be adjusted manually.
+    version = "^1.0.0",
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end,
+  },
 }
 
 return plugins
